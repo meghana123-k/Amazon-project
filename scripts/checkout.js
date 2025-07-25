@@ -114,8 +114,8 @@ document.querySelectorAll(".js-delete-links").forEach((link) => {
       `.js-cart-item-container-${productId}`
     );
     container.remove();
+    updateCartQuantity();
   });
-  updateCartQuantity();
 });
 
 updateCartQuantity();
