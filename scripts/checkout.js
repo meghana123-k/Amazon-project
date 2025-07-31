@@ -9,7 +9,7 @@ hello();
 const today = dayjs();
 const deliveryDate = today.add(7, "days");
 console.log(deliveryDate);
-
+function renderOrderSummary() {
 let cartSummaryHTML = "";
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
@@ -33,7 +33,7 @@ cart.forEach((cartItem) => {
   const today = dayjs();
   const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
   const dateString = deliveryDate.format("dddd, MMMM D");
-
+// function renderOrderSummary() {}
   cartSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
@@ -137,5 +137,8 @@ document.querySelectorAll('.js-delivery-option').forEach((element) => {
   element.addEventListener('click', ()=> {
     const {productId, deliveryOptionId} = element.dataset;
     updateDeliveryOption(productId, deliveryOptionId);
+    renderOrderSummary();
   })
 })
+}
+renderOrderSummary();
