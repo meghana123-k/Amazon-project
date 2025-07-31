@@ -1,8 +1,14 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 
 hello();
+
+const today = dayjs();
+const deliveryDate = today.add(7, 'days');
+console.log(deliveryDate);
+deliveryDate.format('dddd, MMMM, D');
 
 let cartSummaryHTML = "";
 cart.forEach((cartItem) => {
