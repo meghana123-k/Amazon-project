@@ -98,9 +98,9 @@ export function renderOrderSummary() {
   }
   document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
   function displayUpdateCartQuantity() {
-      document.querySelector(
-        ".js-update-cart-quantity"
-      ).innerHTML = `${updateCartQuantity()} items`;
+    document.querySelector(
+      ".js-update-cart-quantity"
+    ).innerHTML = `${updateCartQuantity()} items`;
   }
 
   document.querySelectorAll(".js-delete-links").forEach((link) => {
