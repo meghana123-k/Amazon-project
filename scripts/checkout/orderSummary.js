@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
+import { cart, removeFromCart, updateCartQuantity, updateDeliveryOption } from "../../data/cart.js";
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js"; // named exports
@@ -36,7 +36,7 @@ export function renderOrderSummary() {
                   ${matchingProduct.name};
                 </div>
                 <div class="product-price">
-                  $${formatCurrency(matchingProduct.priceCents)};
+                  $${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -97,16 +97,12 @@ export function renderOrderSummary() {
     return html;
   }
   document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
-  function updateCartQuantity() {
-    let cartQuantity = 0;
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-    document.querySelector(
-      ".js-update-cart-quantity"
-    ).innerHTML = `${cartQuantity} items`;
+  function displayUpdateCartQuantity() {
+      document.querySelector(
+        ".js-update-cart-quantity"
+      ).innerHTML = `${updateCartQuantity()} items`;
   }
+
   document.querySelectorAll(".js-delete-links").forEach((link) => {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
@@ -117,11 +113,11 @@ export function renderOrderSummary() {
         `.js-cart-item-container-${productId}`
       );
       container.remove();
-      updateCartQuantity();
+      displayUpdateCartQuantity();
     });
   });
 
-  updateCartQuantity();
+  displayUpdateCartQuantity();
 
   document.querySelectorAll(".js-delivery-option").forEach((element) => {
     element.addEventListener("click", () => {
