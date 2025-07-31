@@ -5,11 +5,7 @@ import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js"; // 
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; // default exports
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
-hello();
 
-const today = dayjs();
-const deliveryDate = today.add(7, "days");
-console.log(deliveryDate);
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
   cart.forEach((cartItem) => {
@@ -115,6 +111,7 @@ export function renderOrderSummary() {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
       removeFromCart(productId);
+      renderPaymentSummary();
 
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
